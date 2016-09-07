@@ -18,12 +18,21 @@ class ContactTableViewCell: TableViewCell {
     
     // MARK: - Properties
     
-    var viewModel: ContactCellViewModelProtocol! {
+    var viewModel: ContactCellViewModelProtocol? {
         didSet {
-            self.nameLabel.text = self.viewModel.firstName
-            self.surnameLabel.text = self.viewModel.lastName
-            self.thumbnail.image = self.viewModel.thumbnail
+            oldValue?.parentCell = nil
+            viewModel?.parentCell = self
         }
+    }
+    
+    // MARK: - Lifecicle
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.nameLabel.text = nil
+        self.surnameLabel.text = nil
+        self.thumbnail.image = nil
     }
     
 }

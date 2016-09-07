@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        //NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "ImagesSavedOnDevice")
+        
+        
         // Override point for customization after application launch.
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
@@ -24,8 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let masterViewNavigationController: UINavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let masterViewController: MasterViewController = masterViewNavigationController.viewControllers[0] as! MasterViewController
         
-        let dataManager: DataManagerProtocol = DataManager()
-        masterViewController.viewModel = MasterViewModel(dataManager: dataManager)
+        let errorUtils = ErrorUtils()
+        let contactsFactory = ContactsFactory()
+        let dataManager: DataManagerProtocol = DataManager(contactsFactory: contactsFactory, errorUtils: errorUtils)
+        let imageRepository: ImageRepository = ImageRepository(errorUtils: errorUtils)
+        masterViewController.viewModel = MasterViewModel(dataManager: dataManager, imageRepository: imageRepository)
 
         return true
     }

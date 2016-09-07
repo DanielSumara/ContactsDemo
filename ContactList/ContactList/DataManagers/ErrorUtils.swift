@@ -17,37 +17,35 @@ class ErrorUtils {
     // MARK: - API
     
     func getBadUrlError() -> NSError {
-        let localizedDestription: String = "Cannot create url"
-        let localizedFailureReason: String = localizedDestription
-        
-        let error = NSError(domain: ErrorUtils.Domain, code: 601, userInfo: [
-            NSLocalizedDescriptionKey: localizedDestription,
-            NSLocalizedFailureReasonErrorKey: localizedFailureReason
-        ])
-        
-        return error
+        return createErrorWith(601, andDescription: "Cannot create url")
     }
     
     func getBadHttpStatusCode(statusCode: Int) -> NSError {
-        let localizedDestription: String = "Http status code has unexpected value: \(statusCode)"
-        let localizedFailureReason: String = localizedDestription
-        
-        let error = NSError(domain: ErrorUtils.Domain, code: 602, userInfo: [
-            NSLocalizedDescriptionKey: localizedDestription,
-            NSLocalizedFailureReasonErrorKey: localizedFailureReason
-            ])
-        
-        return error
+        return createErrorWith(602, andDescription: "Http status code has unexpected value: \(statusCode)")
     }
     
     func getLackOfDataInResponse() -> NSError {
-        let localizedDestription: String = "Lack of data in response"
+        return createErrorWith(603, andDescription: "Lack of data in response")
+    }
+    
+    func getInvalidImageInMemoryError() -> NSError {
+        return createErrorWith(604, andDescription: "Invalid image in memory")
+    }
+    
+    func getInvalidDataFromNetworkError() -> NSError {
+        return createErrorWith(605, andDescription: "Invalid image data from network")
+    }
+    
+    // MARK: - Methods
+    
+    private func createErrorWith(code: Int, andDescription description: String) -> NSError {
+        let localizedDestription: String = description
         let localizedFailureReason: String = localizedDestription
         
-        let error = NSError(domain: ErrorUtils.Domain, code: 603, userInfo: [
+        let error = NSError(domain: ErrorUtils.Domain, code: code, userInfo: [
             NSLocalizedDescriptionKey: localizedDestription,
             NSLocalizedFailureReasonErrorKey: localizedFailureReason
-            ])
+        ])
         
         return error
     }

@@ -18,14 +18,21 @@ class DataManager: DataManagerProtocol {
     
     // MARK: - Properties
     
-    private let errorUtils = ErrorUtils()
-    private let contactsFactory = ContactsFactory()  // Sholuld be injected
+    private let errorUtils: ErrorUtils
+    private let contactsFactory: ContactsFactory
     private let session: NSURLSession = NSURLSession.sharedSession()
+    
+    // MARK: - Lifecicle
+    
+    init(contactsFactory: ContactsFactory, errorUtils: ErrorUtils) {
+        self.contactsFactory = contactsFactory
+        self.errorUtils = errorUtils
+    }
     
     // MARK: - API
     
     func getContacts(resultBlock: (ServiceResult<[ContactDTO]>) -> Void) {
-        guard let url = NSURL(string: "http://api.randomuser.me/?results=5&key=0A4F-FC2E-5C76-5678&seed=rekrutacja2016") else {
+        guard let url = NSURL(string: "http://api.randomuser.me/?results=100&key=0A4F-FC2E-5C76-5678&seed=rekrutacja2016") else {
             resultBlock(ServiceResult.Failure(self.errorUtils.getBadUrlError()))
             return
         }
@@ -55,7 +62,5 @@ class DataManager: DataManagerProtocol {
     }
     
     // MARK: - Methods
-    
-    
     
 }

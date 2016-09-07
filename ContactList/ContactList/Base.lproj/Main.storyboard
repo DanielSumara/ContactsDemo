@@ -131,6 +131,7 @@
                                     <outlet property="nameLabel" destination="NFv-t5-hpd" id="neO-Lr-pq9"/>
                                     <outlet property="surnameLabel" destination="H5g-zv-kl1" id="grv-Iv-Q8n"/>
                                     <outlet property="thumbnail" destination="cXe-NP-HCc" id="S9X-ed-Ush"/>
+                                    <segue destination="vC3-pB-5Vb" kind="show" identifier="showDetails" id="IAO-qY-PDc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -140,7 +141,13 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Contacts" id="Zdf-7t-Un8"/>
+                    <navigationItem key="navigationItem" title="Contacts" id="Zdf-7t-Un8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="NIe-iE-4Rj">
+                            <connections>
+                                <action selector="refreshTapped:" destination="7bK-jq-Zjz" id="K9h-Pz-5ZU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,4 +169,7 @@
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IAO-qY-PDc"/>
+    </inferredMetricsTieBreakers>
 </document>

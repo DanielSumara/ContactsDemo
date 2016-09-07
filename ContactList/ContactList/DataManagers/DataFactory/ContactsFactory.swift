@@ -53,7 +53,7 @@ class ContactsFactory {
         let street: String = json["street"] as! String
         let city: String = json["city"] as! String
         let state: String = json["state"] as! String
-        let postCode: String = (json["postcode"] as! NSNumber).description
+        let postCode: String = (json["postcode"] as! NSObject).description
         
         return AddressDTO(street: street, city: city, state: state, postCode: postCode)
     }
