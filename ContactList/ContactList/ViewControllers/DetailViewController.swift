@@ -20,6 +20,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
 
+    @IBOutlet weak var favoriteImageView: UIImageView!
+    @IBOutlet weak var markAsFavoriteButton: UIButton!
+    
     // MARK: - Properties
 
     var viewModel: DetailsViewModelProtocol? {
@@ -44,5 +47,9 @@ class DetailViewController: UIViewController {
         // TODO: Handle error messages
     }
 
+    @IBAction func markAsFavorite(sender: UIButton) {
+        self.viewModel?.changeFavoriteState()
+    }
+    
 }
 

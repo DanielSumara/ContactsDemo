@@ -13,7 +13,7 @@ protocol DetailsViewModelProtocol {
     weak var parentViewController: DetailViewController? { get set }
     
     func updateView()
-    func markAsFavorite()
+    func changeFavoriteState()
     
 }
 
@@ -74,10 +74,25 @@ class DetailsViewModel: DetailsViewModelProtocol {
         self.parentViewController?.phoneNumberLabel.text = self.phoneNumber
         self.parentViewController?.cellNumberLabel.text = self.cellNumber
         self.parentViewController?.photoImageView.image = self.photo
+        
+        updateFavoriteState()
     }
     
-    func markAsFavorite() {
+    func changeFavoriteState() {
+        self.contact.isFavorite = !self.contact.isFavorite
+        updateFavoriteState()
+    }
+    
+    // MARK: - Methods
+    
+    private func updateFavoriteState() {
+        guard (self.parentViewController?.isViewLoaded() ?? false) else { return }
         
+        self.parentViewController?.favoriteImageView.hidden = !self.contact.isFavorite
+        switch (self.contact.isFavorite) {
+        case true: self.parentViewController?.markAsFavoriteButton.setTitle("Usuń polubienie", forState: .Normal)
+        case false: self.parentViewController?.markAsFavoriteButton.setTitle("Oznacz jako ulubiony", forState: .Normal)
+        }
     }
     
 }

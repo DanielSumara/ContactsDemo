@@ -12,6 +12,8 @@ protocol MasterViewModelProtocol: UITableViewDataSource, UITableViewDelegate {
     
     weak var parentViewController: MasterViewController? { get set }
     
+    var presentOnlyFavorites: Bool { get set }
+    
     func reloadData()
     func reloadView()
     
@@ -25,9 +27,12 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
     
     weak var parentViewController: MasterViewController?
     
+    var presentOnlyFavorites: Bool { didSet { reloadView() } }
+    
     private let dataManager: DataManagerProtocol
     private let imageRepository: ImageRepositoryProtocol
     
+    private var contacts: [ContactCellViewModel]?
     private var dataSource: [ContactCellViewModel]?
     
     // MARK: - Lifecicle
@@ -35,6 +40,8 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
     init(dataManager: DataManagerProtocol, imageRepository: ImageRepositoryProtocol) {
         self.dataManager = dataManager
         self.imageRepository = imageRepository
+        
+        self.presentOnlyFavorites = false
         
         super.init()
         
@@ -52,7 +59,7 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
                 self.parentViewController?.presentError(error)
                 self.dataSource = []
             case .Success(let data):
-                self.dataSource = data.map { ContactCellViewModel(from: $0, imageRepository: self.imageRepository) }.sort()
+                self.contacts = data.map { ContactCellViewModel(from: $0, imageRepository: self.imageRepository) }.sort()
             }
             
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
@@ -62,6 +69,11 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
     }
     
     func reloadView() {
+        switch (self.presentOnlyFavorites) {
+        case true: self.dataSource = self.contacts?.filter { $0.contact.isFavorite }
+        case false: self.dataSource = self.contacts
+        }
+        
         self.parentViewController?.tableView.reloadData()
     }
     

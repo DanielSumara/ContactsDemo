@@ -63,5 +63,9 @@ class MasterViewController: UITableViewController {
         self.viewModel.reloadData()
     }
     
+    @IBAction func contactVisibilityChange(sender: UISegmentedControl) {
+        self.viewModel.presentOnlyFavorites = sender.selectedSegmentIndex == 1
+    }
+    
 }
 

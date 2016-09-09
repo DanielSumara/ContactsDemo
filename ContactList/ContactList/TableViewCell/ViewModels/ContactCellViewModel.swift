@@ -62,6 +62,8 @@ class ContactCellViewModel: ContactCellViewModelProtocol, Comparable {
         cell.nameLabel.text = self.firstName
         cell.surnameLabel.text = self.lastName
         cell.thumbnail.image = self.thumbnailImage
+        
+        cell.isFavoriteImage.hidden = !self.contact.isFavorite
     }
     
     private func getThumbnail() {

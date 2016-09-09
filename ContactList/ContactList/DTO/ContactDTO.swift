@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ContactDTO {
+class ContactDTO {
     
     let name: String
     let surname: String
@@ -21,6 +21,24 @@ struct ContactDTO {
     let phone: String
     let cell: String
     
-    let isFavorite: Bool
+    var isFavorite: Bool
+    
+    init(name: String,
+         surname: String,
+         email: String,
+         picture: ImageDTO,
+         address: AddressDTO,
+         phone: String,
+         cell: String,
+         isFavorite: Bool) {
+        self.name = name
+        self.surname = surname
+        self.email = email
+        self.picture = picture
+        self.address = address
+        self.phone = phone
+        self.cell = cell
+        self.isFavorite = isFavorite
+    }
     
 }
