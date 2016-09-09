@@ -10,36 +10,39 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    // MARK: - Outlets
+    
+    @IBOutlet weak var fistNameLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var cellNumberLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
 
+    // MARK: - Properties
 
-    var detailItem: AnyObject? {
+    var viewModel: DetailsViewModelProtocol? {
         didSet {
-            // Update the view.
-            self.configureView()
+            self.viewModel?.parentViewController = self
+            self.viewModel?.updateView()
         }
     }
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
+    
+    // MARK: - Lifecicle
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.viewModel?.updateView()
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+    
+    // MARK: - API
+    
+    // TODO: DRY
+    func presentError(error: NSError) {
+        // TODO: Handle error messages
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 

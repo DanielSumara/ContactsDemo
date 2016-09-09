@@ -13,6 +13,9 @@ protocol MasterViewModelProtocol: UITableViewDataSource, UITableViewDelegate {
     weak var parentViewController: MasterViewController? { get set }
     
     func reloadData()
+    func reloadView()
+    
+    func getDetailsViewModelForRow(index: Int) -> DetailsViewModelProtocol?
     
 }
 
@@ -41,6 +44,8 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
     // MARK: - API
     
     func reloadData() {
+        self.dataSource = nil
+        reloadView()
         self.dataManager.getContacts { [unowned self] result in
             switch (result) {
             case .Failure(let error):
@@ -51,9 +56,20 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
             }
             
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                self.parentViewController?.tableView.reloadData()
+                self.reloadView()
             }
         }
+    }
+    
+    func reloadView() {
+        self.parentViewController?.tableView.reloadData()
+    }
+    
+    func getDetailsViewModelForRow(index: Int) -> DetailsViewModelProtocol? {
+        guard let contact = self.dataSource?[index].contact else { return nil }
+        
+        let detailsViewModel = DetailsViewModel(contact: contact, imageRepository: self.imageRepository)
+        return detailsViewModel
     }
     
     // MARK: - UITableViewDataSource

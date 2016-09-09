@@ -35,21 +35,24 @@ class MasterViewController: UITableViewController {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
         
-        self.tableView.reloadData()
+        self.viewModel.reloadView()
     }
     
+    // TODO: DRY
     func presentError(error: NSError) {
-        // TODO: - Handle error
+        // TODO: Handle error
     }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == "showDetails" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
+                
+                controller.viewModel = self.viewModel.getDetailsViewModelForRow(indexPath.row)
             }
         }
     }

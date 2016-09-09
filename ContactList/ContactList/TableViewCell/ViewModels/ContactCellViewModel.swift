@@ -32,6 +32,8 @@ class ContactCellViewModel: ContactCellViewModelProtocol, Comparable {
         }
     }
     
+    let contact: ContactDTO!
+    
     let firstName: String
     let lastName: String
     let thumbnailUrl: String
@@ -42,6 +44,7 @@ class ContactCellViewModel: ContactCellViewModelProtocol, Comparable {
     // MARK: - Lifecicle
     
     init(from contact: ContactDTO, imageRepository: ImageRepositoryProtocol) {
+        self.contact = contact
         self.imageRepository = imageRepository
         
         self.firstName = contact.name
