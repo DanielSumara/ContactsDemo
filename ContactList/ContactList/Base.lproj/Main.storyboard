@@ -248,7 +248,7 @@
                                     <outlet property="nameLabel" destination="NFv-t5-hpd" id="neO-Lr-pq9"/>
                                     <outlet property="surnameLabel" destination="H5g-zv-kl1" id="grv-Iv-Q8n"/>
                                     <outlet property="thumbnail" destination="cXe-NP-HCc" id="S9X-ed-Ush"/>
-                                    <segue destination="vC3-pB-5Vb" kind="show" identifier="showDetails" id="IAO-qY-PDc"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetails" id="DxQ-7f-fh1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -290,6 +290,6 @@
         <image name="StarIcon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IAO-qY-PDc"/>
+        <segue reference="DxQ-7f-fh1"/>
     </inferredMetricsTieBreakers>
 </document>
