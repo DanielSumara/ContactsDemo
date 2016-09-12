@@ -24,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
         
+        let detailsViewController = navigationController.topViewController as! DetailViewController
+        detailsViewController.viewModel = LoadingDataDetailsViewModel()
+        
         let masterViewNavigationController: UINavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let masterViewController: MasterViewController = masterViewNavigationController.viewControllers[0] as! MasterViewController
         
@@ -61,13 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // MARK: - Split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
-        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
-        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
-        if topAsDetailController.viewModel == nil {
-            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-            return true
-        }
-        return false
+        return true
     }
 
 }

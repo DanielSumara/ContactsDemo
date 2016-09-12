@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		095E12561D86E81E0099BA30 /* LoadingDataDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095E12551D86E81E0099BA30 /* LoadingDataDetailsViewModel.swift */; };
+		095E12581D86ECA10099BA30 /* LackOfContactsDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095E12571D86ECA10099BA30 /* LackOfContactsDetailsViewModel.swift */; };
 		099B2A091D80496B00F01BE5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B2A081D80496B00F01BE5 /* ImageRepository.swift */; };
 		099B2A0C1D804C4500F01BE5 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B2A0B1D804C4500F01BE5 /* Image.swift */; };
 		099B2A101D807E3E00F01BE5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099B2A0F1D807E3E00F01BE5 /* Constants.swift */; };
@@ -33,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		095E12551D86E81E0099BA30 /* LoadingDataDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingDataDetailsViewModel.swift; sourceTree = "<group>"; };
+		095E12571D86ECA10099BA30 /* LackOfContactsDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LackOfContactsDetailsViewModel.swift; sourceTree = "<group>"; };
 		099B2A081D80496B00F01BE5 /* ImageRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 		099B2A0B1D804C4500F01BE5 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		099B2A0F1D807E3E00F01BE5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -179,8 +183,10 @@
 		09D229601D7F213100E576D2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				09D229651D7F215A00E576D2 /* MasterViewModel.swift */,
 				09F836181D82FDDE00483B61 /* DetailsViewModel.swift */,
+				095E12551D86E81E0099BA30 /* LoadingDataDetailsViewModel.swift */,
+				09D229651D7F215A00E576D2 /* MasterViewModel.swift */,
+				095E12571D86ECA10099BA30 /* LackOfContactsDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -297,6 +303,7 @@
 				09F836191D82FDDE00483B61 /* DetailsViewModel.swift in Sources */,
 				099B2A101D807E3E00F01BE5 /* Constants.swift in Sources */,
 				09D229701D7F2C6600E576D2 /* ContactsFactory.swift in Sources */,
+				095E12581D86ECA10099BA30 /* LackOfContactsDetailsViewModel.swift in Sources */,
 				09D2294E1D7F1D2E00E576D2 /* TableViewCell.swift in Sources */,
 				09D2296B1D7F264B00E576D2 /* ServiceResult.swift in Sources */,
 				09D229451D7F1A0200E576D2 /* ContactDTO.swift in Sources */,
@@ -305,6 +312,7 @@
 				09D2294C1D7F1CB900E576D2 /* ContactTableViewCell.swift in Sources */,
 				09D229641D7F213D00E576D2 /* MasterViewController.swift in Sources */,
 				09D2292C1D7F18C000E576D2 /* AppDelegate.swift in Sources */,
+				095E12561D86E81E0099BA30 /* LoadingDataDetailsViewModel.swift in Sources */,
 				09D229691D7F260200E576D2 /* DataManager.swift in Sources */,
 				099B2A0C1D804C4500F01BE5 /* Image.swift in Sources */,
 				09F8361C1D8300DD00483B61 /* AddressDTOExtensions.swift in Sources */,

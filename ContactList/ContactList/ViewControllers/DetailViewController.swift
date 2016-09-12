@@ -28,7 +28,6 @@ class DetailViewController: UIViewController {
     var viewModel: DetailsViewModelProtocol? {
         didSet {
             self.viewModel?.parentViewController = self
-            self.viewModel?.updateView()
         }
     }
     

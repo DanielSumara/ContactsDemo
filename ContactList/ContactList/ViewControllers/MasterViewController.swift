@@ -53,6 +53,7 @@ class MasterViewController: UITableViewController {
                 controller.navigationItem.leftItemsSupplementBackButton = true
                 
                 controller.viewModel = self.viewModel.getDetailsViewModelForRow(indexPath.row)
+                self.detailViewController = controller
             }
         }
     }

@@ -75,10 +75,13 @@ class MasterViewModel: NSObject, MasterViewModelProtocol {
         }
         
         self.parentViewController?.tableView.reloadData()
+        self.parentViewController?.detailViewController?.viewModel = getDetailsViewModelForRow(0)
     }
     
     func getDetailsViewModelForRow(index: Int) -> DetailsViewModelProtocol? {
-        guard let contact = self.dataSource?[index].contact else { return nil }
+        guard let dataSource = self.dataSource else { return LoadingDataDetailsViewModel() }
+        guard (dataSource.count != 0) else { return LackOfContactDetailsViewModel() }
+        guard let contact = dataSource[index].contact else { return nil }
         
         let detailsViewModel = DetailsViewModel(contact: contact, imageRepository: self.imageRepository)
         return detailsViewModel
